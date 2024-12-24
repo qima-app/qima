@@ -1,4 +1,4 @@
-FROM webdevops/php-nginx:8.1-alpine
+FROM webdevops/php-nginx:8.2-alpine
 
 # Copy composer.json to the desired location (e.g., /app)
 COPY composer.json /app 
