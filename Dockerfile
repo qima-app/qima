@@ -10,6 +10,6 @@ COPY vhost.conf /opt/docker/etc/nginx/vhost.conf
 # Set the working directory (if necessary)
 WORKDIR /app 
 
-RUN composer install 
+RUN composer install --no-interaction --no-scripts --no-suggest
 
 COPY . /app 
