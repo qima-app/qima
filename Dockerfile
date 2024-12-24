@@ -18,4 +18,4 @@ RUN composer install --no-interaction --no-scripts --no-suggest
 
 COPY . /app 
 
-CMD php artisan serve --host=qima-website.thkzp7.easypanel.host --port=9000
+CMD php artisan serve --host 0.0.0.0 --port 80
