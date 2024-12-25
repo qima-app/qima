@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y \
         unzip \
         libzip-dev \
         zlib1g-dev \
@@ -13,13 +13,8 @@ RUN apt-get update && \
         libjpeg-dev \
         libmcrypt-dev \
         libicu-dev \
-        libxslt1-dev \
-        imagemagick \
-        ffmpeg \
-        libmcrypt \
-        libicu60 && \
-    rm -rf /var/lib/apt/lists/*
-
+        libxslt1-dev 
+        
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
