@@ -1,21 +1,35 @@
-FROM webdevops/php-nginx:8.2-alpine
+FROM php:8.2-apache
 
-# RUN apt-get update -y && apt-get install -y openssl zip unzip git
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y \
+        unzip \
+        libzip-dev \
+        zlib1g-dev \
+        libpng-dev \
+        libjpeg62-turbo-dev \
+        libwebp-dev \
+        libxpm-dev \
+        libjpeg-dev \
+        libmcrypt-dev \
+        libicu-dev \
+        libxslt1-dev \
+        imagemagick \
+        ffmpeg \
+        libmcrypt \
+        libicu60
+
+# Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-# RUN docker-php-ext-install pdo mbstring
 
-# Copy composer.json to the desired location (e.g., /app)
-COPY composer.json /app 
+# Copy composer.json and composer.lock
+COPY composer.json composer.lock ./
 
-# Copy other files
-COPY php.ini /opt/docker/etc/php/php.ini
-COPY vhost.conf /opt/docker/etc/nginx/vhost.conf
-
-# Set the working directory (if necessary)
-WORKDIR /app 
-
+# Install project dependencies
 RUN composer install --no-interaction --no-scripts --no-suggest
 
-COPY . /app 
+# Copy the entire project
+COPY . .
 
-CMD php artisan serve --host 0.0.0.0 --port 80
+# Expose the application port
+EXPOSE 8000
