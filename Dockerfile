@@ -18,6 +18,10 @@ RUN apt-get update && \
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Set Composer environment variables (optional)
+ENV COMPOSER_MEMORY_LIMIT=-1 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Copy composer.json and composer.lock
 COPY composer.json composer.lock ./
 
