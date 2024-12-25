@@ -14,7 +14,7 @@ RUN apt-get update && \
         libmcrypt-dev \
         libicu-dev \
         libxslt1-dev 
-        
+
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -22,7 +22,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json composer.lock ./
 
 # Install project dependencies
-RUN composer install --no-interaction --no-scripts --no-suggest
+RUN composer install --no-interaction --no-scripts --no-suggest --verbose
 
 # Copy the entire project
 COPY . .
