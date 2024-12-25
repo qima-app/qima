@@ -15,6 +15,9 @@ RUN apt-get update && \
         libicu-dev \
         libxslt1-dev 
 
+# Install PHP GD extension
+RUN docker-php-ext-install gd 
+
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
