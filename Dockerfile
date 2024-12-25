@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y \
         unzip \
         libzip-dev \
         zlib1g-dev \
@@ -14,13 +14,8 @@ RUN apt-get update && \
         libmcrypt-dev \
         libicu-dev \
         libxslt1-dev \
-        imagemagick \
-        ffmpeg \
-        libmcrypt \
-        libicu60 \
-        libgd3-dev && \ 
-    rm -rf /var/lib/apt/lists/*
-
+        libgd3-dev
+        
 # Install PHP GD extension
 RUN docker-php-ext-install gd 
 
