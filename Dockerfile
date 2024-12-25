@@ -13,18 +13,10 @@ RUN apt-get update && \
         libjpeg-dev \
         libmcrypt-dev \
         libicu-dev \
-        libxslt1-dev \
-        libgd3-dev
-        
-# Install PHP GD extension
-RUN docker-php-ext-install gd 
+        libxslt1-dev 
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Set Composer environment variables (optional)
-ENV COMPOSER_MEMORY_LIMIT=-1 
-ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Copy composer.json and composer.lock
 COPY composer.json composer.lock ./
